@@ -7,7 +7,7 @@
     <form action="/login" method="post">
         <div class="form-group">
             <label for="perfil" id="pefil">Qual o seu perfil?</label>
-            <label for="user"><input type="radio" name="perfil" id="user" value="user" onclick="alterarCampos()">Usuário comum</label>
+            <label for="user"><input type="radio" name="perfil" id="user" value="user" onclick="alterarCampos()" required>Usuário comum</label>
             <label for="empresa"><input type="radio" name="perfil" id="empresa" value="empresa" onclick="alterarCampos()">Empresa</label>
         </div>
         <!-- Campos exibidos ou ocultados -->
