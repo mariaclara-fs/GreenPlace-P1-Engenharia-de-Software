@@ -216,12 +216,12 @@ main {
 .info-site h3 + p {
     text-align: center;
     line-height: 1.5;
-    margin: 0 10px 20px;
+    margin: 30px 10px 20px;
 }
 .info-site p {
     text-align: justify;
     line-height: 1.5;
-    margin: 20px 10px;
+    margin: 32px 10px;
 }
 .info-principal {
     padding: 8px 10px;
@@ -243,7 +243,7 @@ main {
 .carbono-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit);
-    gap: 16px;
+    gap: 32px;
     max-width: 1000px;
     margin: 0 auto;
 }
@@ -365,9 +365,8 @@ button:hover {
     }
     .info-principal {
         padding: 20px 50px;
-    }
-    .info-site p {
-        margin: 20px 10px;
+        margin: 32px auto;
+        max-width: 1370px;
     }
     .info-carbono {
         margin: 0 10px;
@@ -407,17 +406,24 @@ button:hover {
         height: 30%;
         transform: translateX(100%);
     }
-
     .flash{
         top: 15%;
-
     }
     .info-geral {
         font-size: 1.8rem;
         padding: 20px 25px 150px;
     }
     .info-principal {
+        margin: auto;
         padding: 30px 90px;
+        max-width: 1400px;
+    }
+    .info-site h3 + p {
+        margin: 20px 60px;
+    }
+    .info-site p {
+        margin: 32px auto;
+        max-width: 1370px;
     }
     .info-site h3 {
         font-size: 2.2em;
@@ -435,9 +441,12 @@ button:hover {
         text-align: center;
         font-size: 1.8em;
     }
+    .info-carbono {
+        margin: 0 10px;
+    }
     .carbono-grid {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        max-width: 1200px;
+        max-width: 1400px;
     }
     .form-box {
         width: 75%;
