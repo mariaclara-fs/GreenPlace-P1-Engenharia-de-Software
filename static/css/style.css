@@ -333,6 +333,9 @@ button:hover {
 .campos-ocultos {
     display: none;
 }
+.campo-oculto {
+    margin-bottom: 2.5rem;
+}
 
 @media (min-width: 600px) and (max-width: 1024px) {
     .overlay {

@@ -15,18 +15,26 @@
 
         <div class="form-group">
             <div class="campos-ocultos" id="campo_usuario">
-                <label for="cpf" id="cpf">CPF</label>
-                <input type="text" name="cpf" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" placeholder="Digite seu CPF" required>
-                <label for="nome" id="nome">Nome completo</label>
-                <input type="text" name="nome" required minlength="3" placeholder="Digite seu nome completo">
+                <div class="campo-oculto">
+                    <label for="cpf" id="cpf">CPF</label>
+                    <input type="text" name="cpf" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" placeholder="Digite seu CPF" required>
+                </div>
+                <div class="campo-oculto">
+                    <label for="nome" id="nome">Nome completo</label>
+                    <input type="text" name="nome" required minlength="3" placeholder="Digite seu nome completo">
+                </div>
             </div>
         </div>
         <div class="form-group">
             <div class="campos-ocultos" id="campo_empresa">
-                <label for="cnpj" id="cnpj">CNPJ</label>
-                <input type="text" name="cnpj" pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}" placeholder="Digite seu CNPJ" required>
-                <label for="nome_empresa" id="nome_empresa">Nome da Empresa</label>
-                <input type="text" name="nome_empresa" required minlength="3" placeholder="Digite o nome da empresa">
+                <div class="campo-oculto">
+                    <label for="cnpj" id="cnpj">CNPJ</label>
+                    <input type="text" name="cnpj" pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}" placeholder="Digite seu CNPJ" required>
+                </div>
+                <div class="campo-oculto">
+                    <label for="nome_empresa" id="nome_empresa">Nome da Empresa</label>
+                    <input type="text" name="nome_empresa" required minlength="3" placeholder="Digite o nome da empresa">
+                </div>
             </div>
         </div>
 
@@ -34,7 +42,7 @@
 
         <div class="form-group">
             <label for="senha" id="senha">Senha</label>
-            <input type="password" name="senha" minlength="6" pattern="[a-z0-9._%+-] title="Por favor, insira no mínimo 6 dígitos" placeholder="Digite sua senha" required>
+            <input type="password" name="senha" minlength="6" pattern="[a-z0-9._%+-]" title="Por favor, insira no mínimo 6 dígitos" placeholder="Digite sua senha" required>
         </div>
         <button type="submit">Finalize o cadastro</button>
 
