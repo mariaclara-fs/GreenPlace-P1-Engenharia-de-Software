@@ -385,7 +385,7 @@ button:hover {
 
 @media (min-width: 1024px) {
     body {
-        min-height: 150vh;
+        min-height: 100vh;
     }
     header h2 {
         font-size: 4rem;
