@@ -1,5 +1,6 @@
 from flask import Flask, url_for, session, flash, render_template, redirect, request
 import csv
+import os
 
 # Inicializa aa aplicação Flask
 app = Flask(__name__)
@@ -7,8 +8,21 @@ app = Flask(__name__)
 # Chave secreta de sessões
 app.secret_key = 'chave-secreta-aqui'
 
-# Importando as blueprints
+# Caminho para arquivos de dados
+data_dir =  'data'
+cadastro_file = os.path.join(data_dir, 'cadastro_dos_usuarios.csv')
 
+# cria o arquivo CSV se ele não existe
+if not os.path.exists(data_dir):
+    os.makedirs(data_dir)
+
+# Vai garatir o cabeçalho correto para o arquivo csv
+if not os.path.exists(cadastro_file):
+    with open(cadastro_file, mode='w', encoding='utf-8', newline='') as arquivo_csv:
+        escritor = csv.DictWriter(arquivo_csv, fieldnames=['perfil','cpf','nome','cnpj','nome_empresa','senha'])
+        escritor.writeheader()
+
+# Importando as blueprints
 from app.usuario_comum import user_bp
 from app.empresas import empresa_bp
 
@@ -20,11 +34,22 @@ app.register_blueprint(empresa_bp, url_prefix='/empresas')
 def index():
     return render_template('index.html')
 
-@app.route("/cadastro")
+@app.route("/cadastro", methods=['GET', 'POST'])
 def cadastro():
     """
     lógica da página de cadastro
     """
+    if request.method == 'POST':
+        """
+        Vai abrir o arquivo em modo de append, 'a', em que ele  vai fazer alterações sem apagar o que já existe
+        """
+        with open(cadastro_file, mode='a',  encoding='utf-8', newline='') as arquivo_csv:
+            escrever = csv.DictWriter(arquivo_csv, fieldnames=['perfil','cpf','nome','cnpj','nome_empresa','senha'])
+            # O request.form já tem as colunas nomeadas corretamente
+            escrever.writerow(request.form.to_dict())
+        flash('Cadastro realizado com sucesso! Faça seu  login', 'success')
+        return redirect(url_for('login'))
+    
     return render_template('cadastro.html')
 
 @app.route("/login", methods=['GET', 'POST'])
