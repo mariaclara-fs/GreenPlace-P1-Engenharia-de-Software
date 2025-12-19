@@ -36,12 +36,36 @@ def index():
 @app.route("/cadastro", methods=['GET', 'POST'])
 def cadastro():
     """
-    lógica da página de cadastro
+    Rota GET/POST /cadastro
+    Exibe o formulário e processa as informações
     """
     if request.method == 'POST':
         """
-        Vai abrir o arquivo em modo de append, 'a', em que ele  vai fazer alterações sem apagar o que já existe
+        Vai testar se o CPF/CNPJ está cadastrado, se estiver, redireciona para página de login
+        Se não estiver, salva as informações de cadastro e redireciona para página de login
         """
+
+        # Abre como 'reader' e verifica se o usuário está cadastrado
+        with open(cadastro_file, mode='r', encoding='utf-8') as arquivo_csv:
+            leitor = csv.DictReader(arquivo_csv)
+            cpf = request.form.get('cpf')
+            cnpj = request.form.get('cnpj')
+            if cnpj and not cpf:
+                for linha in leitor:
+                    # Procura se o CNPJ já está cadastrado
+                    if linha.get('cnpj') == cnpj:
+                        # Se estiver, redireciona para página de login
+                        flash('CNPJ já cadastrado!', 'error')
+                        return redirect(url_for('login'))
+            elif cpf and not cnpj:
+                for linha in leitor:
+                    # Procura se o CPF já está cadastrado
+                    if linha.get('cpf') == cpf:
+                        # Se estiver, redireciona para página de login
+                        flash('CPF já cadastrado!', 'error')
+                        return redirect(url_for('login'))
+                            
+        # Se não estiver cadastrado, abre como 'append' e adiciona as informações
         campos = ['cpf', 'nome','cnpj','nome_empresa','senha']
         with open(cadastro_file, mode='a',  encoding='utf-8', newline='') as arquivo_csv:
             escrever = csv.DictWriter(arquivo_csv, fieldnames=campos)
